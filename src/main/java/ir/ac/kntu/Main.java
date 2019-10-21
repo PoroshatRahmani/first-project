@@ -5,7 +5,7 @@ package ir.ac.kntu;
  */
 public class Main {
     public static void main(String[] args) {
-        MapConsumer mapConsumer = new MapConsumer();
-        mapConsumer.accept("los-angeles");
+//        MapConsumer mapConsumer = new MapConsumer();
+        MapConsumer.getInstance().accept("java-island");
     }
 }
