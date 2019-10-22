@@ -1,17 +1,32 @@
 package ir.ac.kntu;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.function.Consumer;
 
-public class MapConsumer implements Consumer<String> {
-    private static MapConsumer INSTANCE = new MapConsumer();
+/**
+ * @author S.Shayan Daneshvar
+ */
+public final class MapConsumer implements Consumer<String[]> {
+    private static final MapConsumer INSTANCE = new MapConsumer();
+
+    private MapConsumer() {
+    }
+
+    public static MapConsumer getInstance() {
+        return INSTANCE;
+    }
 
     @Override
-    public void accept(String string) {
+    public void accept(String... places) {
+        StringBuilder locations = new StringBuilder();
+        Arrays.stream(places).limit(2)
+                .map(x -> x.replace(" ", "-"))
+                .forEach(p -> locations.append(p).append(" "));
         try {
-            Runtime.getRuntime().exec("java -jar lib/map-utility-0.0" +
-                    ".1-SNAPSHOT.jar " + string.trim().replace(" ", "-")
-                    + " " +/*Time out:*/ "20000");
+            Runtime.getRuntime().exec("java -jar lib/map-utility-0.3" +
+                    "-SNAPSHOT.jar " + locations.toString().trim() + " "
+                    +/*Time out:*/ "20000");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -19,10 +34,4 @@ public class MapConsumer implements Consumer<String> {
         }
     }
 
-    public static MapConsumer getInstance() {
-        return INSTANCE;
-    }
-
-    private MapConsumer() {
-    }
 }

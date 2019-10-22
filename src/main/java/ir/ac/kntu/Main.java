@@ -5,7 +5,9 @@ package ir.ac.kntu;
  */
 public class Main {
     public static void main(String[] args) {
-//        MapConsumer mapConsumer = new MapConsumer();
-        MapConsumer.getInstance().accept("java-island");
+        //Good for showing one location
+//        MapConsumer.getInstance().accept("Tehran");
+        //Good for showing two locations
+        MapConsumer.getInstance().accept("Tehran","Dubai");
     }
 }
