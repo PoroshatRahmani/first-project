@@ -32,7 +32,8 @@ public class Menu {
         System.out.println("4)Product");
         System.out.println("5)Send and Receive");
         System.out.println("6)Order tracking");
-        System.out.println("7)SearchB");
+        System.out.println("7)Search");
+        System.out.println("8)Filter");
     }
 
     public static void createBranch(){
@@ -244,7 +245,40 @@ public class Menu {
                 break;
         }
     }
+    public static void filter(){
+        System.out.println("1) sent products");
+        System.out.println("2) received products");
+        System.out.println("3) warehouse products");
 
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        switch (choice){
+            case 1:
+                for (Product p:
+                     products) {
+                    if (p.getCondition() == Condition.Sent){
+                        System.out.println(p.getName());
+                    }
+                }
+                break;
+            case 2:
+                for (Product p:
+                        products) {
+                    if (p.getCondition() == Condition.Received){
+                        System.out.println(p.getName());
+                    }
+                }
+                break;
+            case 3:
+                for (Product p:
+                        products) {
+                    if (p.getCondition() == Condition.Warehouse){
+                        System.out.println(p.getName());
+                    }
+                }
+                break;
+        }
+    }
     public static ArrayList<Customer> getCustomers() {
         return customers;
     }
