@@ -10,17 +10,18 @@ public class Menu {
     private static ArrayList<City> cities = new ArrayList<>();
     private static ArrayList<Product> products = new ArrayList<>();
 
-    private static void addCustomer(String name, int code){
-        customers.add(new Customer(name,code));
+    public static void addCustomer(Customer customer){
+        customers.add(customer);
     }
-    private static void addBranch(City city, String numEmployee,int codeBranch){
-        branches.add(new Branch(city,numEmployee,codeBranch));
+    public static void addBranch(Branch branch){
+        branches.add(branch);
     }
-    private static void addCity(City city){
+    
+    public static void addCity(City city){
         cities.add(city);
     }
 
-    private static void addProduct(Product product){
+    public static void addProduct(Product product){
         products.add(product);
     }
 
@@ -48,7 +49,7 @@ public class Menu {
         String numbEmployee = scn.next();
         System.out.println("enter branch's code: ");
         int codeBranch = scn.nextInt();
-        addBranch(city,numbEmployee,codeBranch);
+        addBranch(new Branch(city,numbEmployee,codeBranch));
     }
 
     public static void createCustomer(){
@@ -56,7 +57,7 @@ public class Menu {
         Scanner scn = new Scanner(System.in);
         String name = scn.next();
         int code = scn.nextInt();
-        addCustomer(name,code);
+        addCustomer(new Customer(name,code));
     }
 
     public static void createCity(){
@@ -84,7 +85,7 @@ public class Menu {
 
         System.out.println("Enter branch's code: ");
         int branchCode = scn.nextInt();
-        Branch branch;
+        Branch branch = null;
         for (Branch  br : branches) {
             if (br.getCodeBranch() == branchCode){
                 branch = br;
@@ -156,7 +157,7 @@ public class Menu {
                 break;
             }
         }
-        addProduct(new Product(name,customer,originCity,destinationCity,weight,
+        addProduct(new Product(name,branch,customer,originCity,destinationCity,weight,
                 new Date(sYear,sMonth,sDay),new Date(rYear,rMonth,rDay),ss,sp));
     }
     public static void sendProduct(){

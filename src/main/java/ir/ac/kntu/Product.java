@@ -2,6 +2,7 @@ package ir.ac.kntu;
 
 public class Product {
     private String name;
+    private Branch branch;
     private Customer receiver;
     private City origin;
     private City destination;
@@ -12,10 +13,11 @@ public class Product {
     private SystemPost postSystem;
     private Condition condition;
 
-    public Product(String name, Customer receiver, City origin, City destination,
+    public Product(String name, Branch branch,Customer receiver, City origin, City destination,
                    int weight, Date sendDate, Date receiveDate, SystemSend sendSystem,
                    SystemPost postSystem) {
         this.name = name;
+        this.branch = branch;
         this.receiver = receiver;
         this.origin = origin;
         this.destination = destination;
@@ -33,6 +35,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
 
     public Customer getReceiver() {
@@ -111,6 +121,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "name='" + name + '\'' +
+                ", branch=" + branch +
                 ", receiver=" + receiver +
                 ", origin=" + origin +
                 ", destination=" + destination +
